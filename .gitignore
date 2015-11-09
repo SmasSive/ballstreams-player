@@ -76,3 +76,5 @@ proguard/
 # Android Studio Navigation editor temp files
 .navigation/
 
+# Project specific files
+/secrets.properties
