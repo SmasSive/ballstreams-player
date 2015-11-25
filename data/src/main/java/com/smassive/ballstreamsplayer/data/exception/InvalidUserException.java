@@ -13,21 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.data.net;
+package com.smassive.ballstreamsplayer.data.exception;
 
-public class ApiConstants {
+/**
+ * Exception throw by the application when the User credentials given are invalid.
+ */
+public class InvalidUserException extends Exception {
 
-    public static final String ENDPOINT = "https://api.ballstreams.com";
+  public InvalidUserException() {
+    super();
+  }
 
-    // Successful Response
-    public static final int HTTP_STATUS_CODE_200 = 200;
+  public InvalidUserException(final String message) {
+    super(message);
+  }
 
-    // Empty Response
-    public static final int HTTP_STATUS_CODE_204 = 204;
+  public InvalidUserException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
 
-    // Error (Retrieve error message in "msg" response)
-    public static final int HTTP_STATUS_CODE_400 = 400;
-
-    // Invalid Method (GET instead of POST, etc)
-    public static final int HTTP_STATUS_CODE_406 = 406;
+  public InvalidUserException(final Throwable cause) {
+    super(cause);
+  }
 }

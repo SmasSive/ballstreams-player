@@ -13,21 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.data.net;
+package com.smassive.ballstreamsplayer.app.internal.di.module;
 
-public class ApiConstants {
+import com.smassive.ballstreamplayer.domain.interactor.GetUserUseCase;
+import com.smassive.ballstreamplayer.domain.interactor.UseCase;
+import com.smassive.ballstreamsplayer.app.internal.di.PerActivity;
 
-    public static final String ENDPOINT = "https://api.ballstreams.com";
+import javax.inject.Named;
 
-    // Successful Response
-    public static final int HTTP_STATUS_CODE_200 = 200;
+import dagger.Module;
+import dagger.Provides;
 
-    // Empty Response
-    public static final int HTTP_STATUS_CODE_204 = 204;
+/**
+ * Dagger module that provides user related collaborators.
+ */
+@Module
+public class UserModule {
 
-    // Error (Retrieve error message in "msg" response)
-    public static final int HTTP_STATUS_CODE_400 = 400;
-
-    // Invalid Method (GET instead of POST, etc)
-    public static final int HTTP_STATUS_CODE_406 = 406;
+    @Provides
+    @PerActivity
+    @Named("getUserUseCase")
+    UseCase provideGetUserUseCase(GetUserUseCase getUserUseCase) {
+        return getUserUseCase;
+    }
 }

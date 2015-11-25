@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.data.net;
+package com.smassive.ballstreamsplayer.app.model;
 
-public class ApiConstants {
+import lombok.Data;
 
-    public static final String ENDPOINT = "https://api.ballstreams.com";
+@Data
+public class UserModel {
 
-    // Successful Response
-    public static final int HTTP_STATUS_CODE_200 = 200;
+    private String status;
 
-    // Empty Response
-    public static final int HTTP_STATUS_CODE_204 = 204;
+    private String username;
 
-    // Error (Retrieve error message in "msg" response)
-    public static final int HTTP_STATUS_CODE_400 = 400;
+    private String favteam;
 
-    // Invalid Method (GET instead of POST, etc)
-    public static final int HTTP_STATUS_CODE_406 = 406;
+    private String membership;
 }

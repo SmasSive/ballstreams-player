@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.data.net;
+package com.smassive.ballstreamsplayer.app.navigation;
 
-public class ApiConstants {
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-    public static final String ENDPOINT = "https://api.ballstreams.com";
+/**
+ * Class used to navigate through the application.
+ */
+@Singleton
+public class Navigator {
 
-    // Successful Response
-    public static final int HTTP_STATUS_CODE_200 = 200;
-
-    // Empty Response
-    public static final int HTTP_STATUS_CODE_204 = 204;
-
-    // Error (Retrieve error message in "msg" response)
-    public static final int HTTP_STATUS_CODE_400 = 400;
-
-    // Invalid Method (GET instead of POST, etc)
-    public static final int HTTP_STATUS_CODE_406 = 406;
+    @Inject
+    public Navigator() {
+    }
 }

@@ -13,21 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.data.net;
+package com.smassive.ballstreamplayer.domain.repository;
 
-public class ApiConstants {
+import com.smassive.ballstreamplayer.domain.bean.UserBo;
 
-    public static final String ENDPOINT = "https://api.ballstreams.com";
+import rx.Observable;
 
-    // Successful Response
-    public static final int HTTP_STATUS_CODE_200 = 200;
+/**
+ * Interface that represents a Repository for getting {@link UserBo} related data.
+ */
+public interface UserRepository {
 
-    // Empty Response
-    public static final int HTTP_STATUS_CODE_204 = 204;
-
-    // Error (Retrieve error message in "msg" response)
-    public static final int HTTP_STATUS_CODE_400 = 400;
-
-    // Invalid Method (GET instead of POST, etc)
-    public static final int HTTP_STATUS_CODE_406 = 406;
+    /**
+     * Get an {@link rx.Observable} which will emit a {@link UserBo}.
+     *
+     * @param username Name of the user to login.
+     * @param password Password of the user to login.
+     */
+    Observable<UserBo> getUser(String username, String password);
 }

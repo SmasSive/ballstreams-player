@@ -15,19 +15,15 @@
  */
 package com.smassive.ballstreamsplayer.data.net;
 
-public class ApiConstants {
+import com.smassive.ballstreamsplayer.data.bean.dto.UserResponseDto;
 
-    public static final String ENDPOINT = "https://api.ballstreams.com";
+import retrofit.http.POST;
+import retrofit.http.Query;
+import rx.Observable;
 
-    // Successful Response
-    public static final int HTTP_STATUS_CODE_200 = 200;
+public interface ApiService {
 
-    // Empty Response
-    public static final int HTTP_STATUS_CODE_204 = 204;
-
-    // Error (Retrieve error message in "msg" response)
-    public static final int HTTP_STATUS_CODE_400 = 400;
-
-    // Invalid Method (GET instead of POST, etc)
-    public static final int HTTP_STATUS_CODE_406 = 406;
+    @POST("/Login")
+    Observable<UserResponseDto> login(@Query("username") String username, @Query("password") String password,
+            @Query("key") String apiKey);
 }

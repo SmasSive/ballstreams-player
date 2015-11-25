@@ -13,21 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.data.net;
+package com.smassive.ballstreamsplayer.data.bean.vo.mapper;
 
-public class ApiConstants {
+import com.smassive.ballstreamplayer.domain.bean.UserBo;
+import com.smassive.ballstreamsplayer.data.bean.vo.UserVo;
 
-    public static final String ENDPOINT = "https://api.ballstreams.com";
+public final class UserVoMapper {
 
-    // Successful Response
-    public static final int HTTP_STATUS_CODE_200 = 200;
+    private UserVoMapper() {
+    }
 
-    // Empty Response
-    public static final int HTTP_STATUS_CODE_204 = 204;
+    public static UserBo toBo(UserVo vo) {
+        UserBo bo = null;
 
-    // Error (Retrieve error message in "msg" response)
-    public static final int HTTP_STATUS_CODE_400 = 400;
+        if (vo != null) {
+            bo = new UserBo();
 
-    // Invalid Method (GET instead of POST, etc)
-    public static final int HTTP_STATUS_CODE_406 = 406;
+            bo.setUsername(vo.getUsername());
+            bo.setStatus(vo.getStatus());
+            bo.setMembership(vo.getMembership());
+            bo.setFavteam(vo.getFavteam());
+        }
+
+        return bo;
+    }
 }

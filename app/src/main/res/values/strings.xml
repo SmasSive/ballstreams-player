@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Ball Streams Player</string>
-    <string name="action_settings">Settings</string>
+
+    // Login Activity
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="sign_in">Sign in</string>
+    <string name="message_user_ok">User logged in successfully!</string>
+
+    // Exception messages
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_no_connection">There is no internet connection</string>
+    <string name="exception_message_user_not_found">Invalid username or password</string>
 </resources>
