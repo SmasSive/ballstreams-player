@@ -6,18 +6,17 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/colorPrimary"
-    android:gravity="center"
     tools:context=".view.activity.LoginActivity">
 
     <android.support.v7.widget.CardView
         android:id="@+id/signinbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_centerInParent="true"
         card_view:cardCornerRadius="4dp">
 
         <LinearLayout
@@ -32,11 +31,13 @@
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:hint="@string/username_hint"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
                 android:background="@null"/>
 
             <View
@@ -46,12 +47,14 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
                 android:background="@null"/>
 
             <CheckBox
@@ -84,6 +87,14 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_above="@id/signinbox"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/logo"/>
 
     <Button
         android:id="@+id/signin"
