@@ -22,8 +22,6 @@ public class UserResponseDto extends ErrorResponseDto {
 
     private String uid;
 
-    private String status;
-
     private String username;
 
     private String favteam;

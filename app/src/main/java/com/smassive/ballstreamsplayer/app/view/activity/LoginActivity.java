@@ -20,6 +20,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class LoginActivity extends BaseActivity implements HasComponent<UserComponent> {
 
@@ -39,7 +40,7 @@ public class LoginActivity extends BaseActivity implements HasComponent<UserComp
     TextView messageText;
 
     @Bind(R.id.loginProgressBar)
-    ProgressBar loginProgressBar;
+    MaterialProgressBar loginProgressBar;
 
     @Inject
     UserPresenter userPresenter;
@@ -67,8 +68,9 @@ public class LoginActivity extends BaseActivity implements HasComponent<UserComp
 
     @OnClick(R.id.signin)
     public void signin() {
-        userPresenter.getUser(username.getText().toString(), password.getText().toString());
+        hideMessage();
         showLoading();
+        userPresenter.getUser(username.getText().toString(), password.getText().toString());
     }
 
     public void showLoading() {
@@ -97,6 +99,10 @@ public class LoginActivity extends BaseActivity implements HasComponent<UserComp
             messageText.setTextAppearance(this, R.style.text_message_ok);
         }
         messageText.setVisibility(View.VISIBLE);
+    }
+
+    public void hideMessage() {
+        messageText.setVisibility(View.GONE);
     }
 
     @Override

@@ -17,18 +17,22 @@ package com.smassive.ballstreamsplayer.data.repository.datasource;
 
 import com.smassive.ballstreamplayer.domain.bean.UserBo;
 import com.smassive.ballstreamsplayer.data.BuildConfig;
+import com.smassive.ballstreamsplayer.data.bean.dto.UserResponseDto;
 import com.smassive.ballstreamsplayer.data.bean.dto.mapper.UserResponseDtoMapper;
 import com.smassive.ballstreamsplayer.data.bean.vo.UserVo;
-import com.smassive.ballstreamsplayer.data.db.RealmObservable;
 import com.smassive.ballstreamsplayer.data.net.ApiConstants;
 import com.smassive.ballstreamsplayer.data.net.ApiService;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import android.content.Context;
 
+import io.realm.Realm;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
 import rx.Observable;
+import rx.functions.Action1;
 
 public class CloudUserDataStore implements UserDataStore {
 
@@ -36,9 +40,27 @@ public class CloudUserDataStore implements UserDataStore {
 
     private Context context;
 
+    private final Action1<UserResponseDto> saveToDb = userResponseDto -> {
+        UserVo userVo = UserResponseDtoMapper.toVo(userResponseDto);
+
+        Realm realm = Realm.getInstance(context);
+        realm.beginTransaction();
+        realm.copyToRealm(userVo);
+        realm.commitTransaction();
+        realm.close();
+    };
+
     public CloudUserDataStore(Context context) {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient httpClient = new OkHttpClient();
+        // add logging as last interceptor
+        httpClient.interceptors().add(logging);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConstants.ENDPOINT)
+                .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
@@ -55,10 +77,6 @@ public class CloudUserDataStore implements UserDataStore {
      */
     @Override
     public Observable<UserBo> getUser(String username, String password) {
-        return apiService.login(username, password, BuildConfig.API_KEY)
-                .doOnNext(userResponseDto -> {
-                    UserVo userVo = UserResponseDtoMapper.toVo(userResponseDto);
-                    RealmObservable.object(context, realm -> realm.copyToRealm(userVo));
-                }).map(UserResponseDtoMapper::toBo);
+        return apiService.login(username, password, BuildConfig.API_KEY).doOnNext(saveToDb).map(UserResponseDtoMapper::toBo);
     }
 }

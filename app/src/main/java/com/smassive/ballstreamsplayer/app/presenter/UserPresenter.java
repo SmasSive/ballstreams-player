@@ -24,6 +24,7 @@ import com.smassive.ballstreamplayer.domain.interactor.UseCase;
 import com.smassive.ballstreamsplayer.app.exception.ErrorMessageFactory;
 import com.smassive.ballstreamsplayer.app.internal.di.PerActivity;
 import com.smassive.ballstreamsplayer.app.view.activity.LoginActivity;
+import com.smassive.ballstreamsplayer.data.exception.InvalidUserException;
 
 import android.support.annotation.NonNull;
 
@@ -110,7 +111,7 @@ public class UserPresenter implements Presenter {
             super.onError(e);
 
             hideLoading();
-            showError(new DefaultErrorBundle((Exception) e));
+            showError(new DefaultErrorBundle(new InvalidUserException(e)));
         }
 
         @Override

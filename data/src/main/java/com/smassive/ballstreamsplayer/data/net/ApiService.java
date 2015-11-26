@@ -17,13 +17,15 @@ package com.smassive.ballstreamsplayer.data.net;
 
 import com.smassive.ballstreamsplayer.data.bean.dto.UserResponseDto;
 
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
-import retrofit.http.Query;
 import rx.Observable;
 
 public interface ApiService {
 
+    @FormUrlEncoded
     @POST("/Login")
-    Observable<UserResponseDto> login(@Query("username") String username, @Query("password") String password,
-            @Query("key") String apiKey);
+    Observable<UserResponseDto> login(@Field("username") String username, @Field("password") String password,
+            @Field("key") String apiKey);
 }
