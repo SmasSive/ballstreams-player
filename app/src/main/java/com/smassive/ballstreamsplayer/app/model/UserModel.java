@@ -20,8 +20,6 @@ import lombok.Data;
 @Data
 public class UserModel {
 
-    private String status;
-
     private String username;
 
     private String favteam;

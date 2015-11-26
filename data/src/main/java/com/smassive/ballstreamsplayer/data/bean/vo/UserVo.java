@@ -25,8 +25,6 @@ public class UserVo extends RealmObject {
     @PrimaryKey
     private String uid;
 
-    private String status;
-
     private String username;
 
     private String favteam;
@@ -41,14 +39,6 @@ public class UserVo extends RealmObject {
 
     public void setUid(String uid) {
         this.uid = uid;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getUsername() {

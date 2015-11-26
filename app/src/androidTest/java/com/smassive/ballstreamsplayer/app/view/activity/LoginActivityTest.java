@@ -13,27 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.app.model.mapper;
+package com.smassive.ballstreamsplayer.app.view.activity;
 
-import com.smassive.ballstreamplayer.domain.bean.UserBo;
-import com.smassive.ballstreamsplayer.app.model.UserModel;
-
-public final class UserModelMapper {
-
-    private UserModelMapper() {
-    }
-
-    public static UserModel toBo(UserBo bo) {
-        UserModel model = null;
-
-        if (bo != null) {
-            model = new UserModel();
-
-            model.setUsername(bo.getUsername());
-            model.setMembership(bo.getMembership());
-            model.setFavteam(bo.getFavteam());
-        }
-
-        return model;
-    }
+public class LoginActivityTest {
 }

@@ -20,8 +20,6 @@ import lombok.Data;
 @Data
 public class UserBo {
 
-    private String status;
-
     private String username;
 
     private String favteam;

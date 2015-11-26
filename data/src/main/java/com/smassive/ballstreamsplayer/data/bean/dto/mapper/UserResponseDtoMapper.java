@@ -32,7 +32,6 @@ public final class UserResponseDtoMapper {
 
             bo.setFavteam(dto.getFavteam());
             bo.setMembership(dto.getMembership());
-            bo.setStatus(dto.getStatus());
             bo.setUsername(dto.getUsername());
         }
 
@@ -47,7 +46,6 @@ public final class UserResponseDtoMapper {
 
             vo.setFavteam(dto.getFavteam());
             vo.setMembership(dto.getMembership());
-            vo.setStatus(dto.getStatus());
             vo.setUsername(dto.getUsername());
             vo.setUid(dto.getUid());
             vo.setToken(dto.getToken());

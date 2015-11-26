@@ -30,7 +30,6 @@ public final class UserVoMapper {
             bo = new UserBo();
 
             bo.setUsername(vo.getUsername());
-            bo.setStatus(vo.getStatus());
             bo.setMembership(vo.getMembership());
             bo.setFavteam(vo.getFavteam());
         }

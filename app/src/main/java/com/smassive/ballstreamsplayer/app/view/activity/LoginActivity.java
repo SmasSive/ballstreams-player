@@ -68,8 +68,6 @@ public class LoginActivity extends BaseActivity implements HasComponent<UserComp
 
     @OnClick(R.id.signin)
     public void signin() {
-        hideMessage();
-        showLoading();
         userPresenter.getUser(username.getText().toString(), password.getText().toString());
     }
 

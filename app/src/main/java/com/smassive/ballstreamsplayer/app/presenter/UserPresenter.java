@@ -55,6 +55,8 @@ public class UserPresenter implements Presenter {
         if (getUserUseCase instanceof GetUserUseCase) {
             ((GetUserUseCase) getUserUseCase).execute(username, password, new GetUserSubscriber());
         }
+        hideMessage();
+        showLoading();
     }
 
     /**
@@ -84,6 +86,10 @@ public class UserPresenter implements Presenter {
         getUserUseCase.unsubscribe();
     }
 
+    private void showLoading() {
+        activity.showLoading();
+    }
+
     private void hideLoading() {
         activity.hideLoading();
     }
@@ -95,6 +101,10 @@ public class UserPresenter implements Presenter {
     private void showError(ErrorBundle errorBundle) {
         String errorMessage = ErrorMessageFactory.create(activity, errorBundle.getException());
         activity.showErrorMessage(errorMessage);
+    }
+
+    private void hideMessage() {
+        activity.hideMessage();
     }
 
     private class GetUserSubscriber extends DefaultSubscriber<UserBo> {
