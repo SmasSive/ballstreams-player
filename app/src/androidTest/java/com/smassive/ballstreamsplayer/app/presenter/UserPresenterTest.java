@@ -32,9 +32,9 @@ import static org.mockito.Mockito.verify;
 
 public class UserPresenterTest extends AndroidTestCase {
 
-    private static final String FAKE_USERNAME = "fakeUsername";
+    private static final String FAKE_USERNAME = "Michael Jordan";
 
-    private static final String FAKE_PASSWORD = "fakePassword";
+    private static final String FAKE_PASSWORD = "Mj23";
 
     private UserPresenter userPresenter;
 
@@ -51,7 +51,9 @@ public class UserPresenterTest extends AndroidTestCase {
     public void setUp() throws Exception {
         super.setUp();
 
-        MockitoAnnotations.initMocks(this);
+        //MockitoAnnotations.initMocks(this);
+        // http://stackoverflow.com/questions/30590470/npe-when-calling-mockitoannotations-initmocks-in-androidtestcase
+        System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
 
         userPresenter = new UserPresenter(mockGetUserUseCase);
         userPresenter.setView(mockLoginActivity);

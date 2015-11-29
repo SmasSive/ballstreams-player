@@ -15,5 +15,39 @@
  */
 package com.smassive.ballstreamsplayer.app.view.activity;
 
-public class LoginActivityTest {
+import com.smassive.ballstreamsplayer.app.R;
+
+import android.content.Intent;
+import android.test.ActivityInstrumentationTestCase2;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.not;
+
+public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
+
+    private LoginActivity loginActivity;
+
+    public LoginActivityTest() {
+        super(LoginActivity.class);
+    }
+
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+        Intent loginIntent = new Intent(getInstrumentation().getTargetContext(), LoginActivity.class);
+        setActivityIntent(loginIntent);
+        this.loginActivity = getActivity();
+    }
+
+    public void testVisualComponents() throws Exception {
+        onView(withId(R.id.username)).check(matches(isDisplayed()));
+        onView(withId(R.id.password)).check(matches(isDisplayed()));
+        onView(withId(R.id.rememberme)).check(matches(isDisplayed()));
+        onView(withId(R.id.signin)).check(matches(isDisplayed()));
+        onView(withId(R.id.messageText)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.loginProgressBar)).check(matches(not(isDisplayed())));
+    }
 }

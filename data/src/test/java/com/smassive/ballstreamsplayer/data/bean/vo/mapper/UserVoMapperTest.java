@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smassive.ballstreamsplayer.app.model.mapper;
+package com.smassive.ballstreamsplayer.data.bean.vo.mapper;
 
 import com.smassive.ballstreamplayer.domain.bean.UserBo;
-import com.smassive.ballstreamsplayer.app.model.UserModel;
+import com.smassive.ballstreamsplayer.data.ApplicationTestCase;
+import com.smassive.ballstreamsplayer.data.bean.vo.UserVo;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class UserModelMapperTest extends TestCase {
+public class UserVoMapperTest extends ApplicationTestCase {
 
     public static final String FAKE_USERNAME = "Michael Jordan";
 
@@ -33,18 +34,19 @@ public class UserModelMapperTest extends TestCase {
 
     public static final String FAKE_MEMBERSHIP = "Premium";
 
+    @Test
     public void testToBo() throws Exception {
-        UserBo userBo = new UserBo();
-        userBo.setUsername(FAKE_USERNAME);
-        userBo.setFavteam(FAKE_FAVTEAM);
-        userBo.setMembership(FAKE_MEMBERSHIP);
+        UserVo userVo = new UserVo();
+        userVo.setUsername(FAKE_USERNAME);
+        userVo.setFavteam(FAKE_FAVTEAM);
+        userVo.setMembership(FAKE_MEMBERSHIP);
 
-        UserModel userModel = UserModelMapper.toBo(userBo);
+        UserBo userBo = UserVoMapper.toBo(userVo);
 
-        assertThat(userModel, is(notNullValue()));
-        assertThat(userModel, is(instanceOf(UserModel.class)));
-        assertThat(userModel.getUsername(), is(FAKE_USERNAME));
-        assertThat(userModel.getFavteam(), is(FAKE_FAVTEAM));
-        assertThat(userModel.getMembership(), is(FAKE_MEMBERSHIP));
+        assertThat(userBo, is(notNullValue()));
+        assertThat(userBo, is(instanceOf(UserBo.class)));
+        assertThat(userBo.getUsername(), is(FAKE_USERNAME));
+        assertThat(userBo.getMembership(), is(FAKE_MEMBERSHIP));
+        assertThat(userBo.getFavteam(), is(FAKE_FAVTEAM));
     }
 }
